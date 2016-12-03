@@ -7,7 +7,7 @@ export const Parties = new MongoObservable.Collection<Party>('parties');
 
 function loggedIn() {
   return !!Meteor.user();
-}
+  }
 
 Parties.allow({
   insert: loggedIn,
