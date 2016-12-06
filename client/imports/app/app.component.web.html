@@ -2,12 +2,12 @@
   <a routerLink="/" class="md-title">Socially</a>
   <span class="fill-remaining-space"></span>
   <div [hidden]="user">
-    <a md-button [routerLink]="['/login']" >Login</a>
-    <a md-button [routerLink]="['/signup']">Sign up0</a>
+    <a md-button [routerLink]="['/login']" >hbkLogin0</a>
+    <a md-button [routerLink]="['/signup']">bkSign up0</a>
   </div>
   <div [hidden]="!user">
-    <span>{{ user | displayName }}</span>
+    xx<span>{{ user | displayName }}</span>yy
     <button md-button (click)="logout()">Logout</button>
   </div>
 </md-toolbar>
-<router-outlet></router-outlet>
+<router-outlet>inside another router-outlet hbk</router-outlet>

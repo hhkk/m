@@ -12,7 +12,10 @@
 
             </div>
           </md-toolbar>
-          <parties-form [hidden]="!user"></parties-form>
+          <utds-form></utds-form>
+
+
+          <parties-formx [hidden]="!user"></parties-formx>
           <div [hidden]="user">You need to login to create new parties!</div>
         </div>
         <div layout-padding layout="row">
