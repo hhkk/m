@@ -4,8 +4,14 @@
 
 <br>hbkemail{{hbkemail}}hbkemail
 
-<form [formGroup]="addForm" (ngSubmit)="addUtd(); upload.reset()">
-    THIS IS UTD form
+<!--<form [formGroup]="addForm" (ngSubmit)="doUtd(); upload.reset()">-->
+<form [formGroup]="addForm" (ngSubmit)="doUtd()">
+    Enter UsToDo
+    <md-input formControlName="name2" placeholder="Utd"></md-input>
+    <div class="checkbox">
+        <md-checkbox formControlName="public">Public</md-checkbox>
+    </div>
+    <button md-raised-button type="submit">Add3</button>
 </form>
 <br>UTD END<br>
 

@@ -1,14 +1,8 @@
 import { CollectionObject } from './collection-object.model';
 
 export interface Utd extends CollectionObject {
-  name: string;
-  description: string;
-  location: Location;
-  owner?: string;
+  namex: string;
   public: boolean;
-  invited?: string[];
-  rsvps?: RSVP[];
-  images?: string[];
 }
 
 interface RSVP {

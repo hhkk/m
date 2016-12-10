@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Meteor } from 'meteor/meteor';
 
-import { Parties } from '../../../../both/collections/parties.collection';
+// import { Parties } from '../../../../both/collections/parties.collection';
 import { Utds } from '../../../../both/collections/utds.collection';
+import { UtdCmd } from '../../../../both/utlities/UtdCmd';
 
 import template from './utds-form.component.html';
 
@@ -24,28 +25,42 @@ export class UtdsFormComponent implements OnInit {
 
   ngOnInit() {
     this.addForm = this.formBuilder.group({
-      utd: ['', Validators.required]
+      name2: ['', Validators.required],
+      public: [false]
     });
+
   }
 
-  testhbk() {
-    this.hbkemail = 'fdfdfdfd2';
-    alert ('in testhbk');
-    this.hbkemail = 'fdfdfdfd3';
+  doUtd(): void {
+    let utdRawTrim = this.addForm.value.name2.trim();
+    let publicInd = this.addForm.value.public;
+    //alert('in doUtd utdRawTrim [' + utdRawTrim + ']');
+    let utdCmd = new UtdCmd(utdRawTrim, publicInd);
+    //alert('in utds-form.component.ts:' + utdCmd.getUtdRawTrim());
+    if (!Meteor.userId()) {
+      alert('Please log in to do a utd');
+      return;
+    }
 
-    var t = 'ggg';
-    Parties.insert({
-      name: t,
-      description: t,
-      location: t,
-      owner: Meteor.userId()
-    });
-    Utds.insert({
-      name: t,
-      description: t,
-      location: t,
-      owner: Meteor.userId()
-    });
+    if (this.addForm.valid)
+    {
+      try {
+        Utds.insert({
+          namex: utdCmd.getUtdRawTrim(),
+          publicInd: utdCmd.getPublicInd()
+        });
+        alert('sucessful save:' + utdCmd.getUtdRawTrim())
+
+      } catch (e) {
+        alert('errahbk:' + e);
+      }
+      //this.addForm.reset(); blanks out entered value
+    }
+  }
+
+
+
+  testhbk() {
   }
 
 }
