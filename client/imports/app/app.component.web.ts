@@ -7,7 +7,7 @@ import {InjectUser} from "angular2-meteor-accounts-ui";
   selector: 'app',
   template
 })
-@InjectUser('user')
+@InjectUser('userhbk')
 export class AppComponent {
   constructor() {
 

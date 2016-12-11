@@ -10,6 +10,7 @@ import template from './parties-form.component.html';
   selector: 'parties-formx',
   template
 })
+
 export class PartiesFormComponent implements OnInit {
   addForm: FormGroup;
   images: string[] = [];

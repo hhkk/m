@@ -16,11 +16,13 @@ export class UtdsFormComponent implements OnInit {
   addForm: FormGroup;
   images: string[] = [];
   hbkemail: string;
+  utdstatus: string;
 
   constructor(
-    private formBuilder: FormBuilder
+      private formBuilder: FormBuilder
   ) {
-    this.hbkemail = 'fdfdfdfd';
+    this.hbkemail   = 'fdfdfdfd';
+    this.utdstatus = 'defaultstatus';
   }
 
   ngOnInit() {
@@ -45,13 +47,14 @@ export class UtdsFormComponent implements OnInit {
     if (this.addForm.valid)
     {
 
-      
+
       try {
         Utds.insert({
           namex: utdCmd.getUtdRawTrim(),
           publicInd: utdCmd.getPublicInd()
         });
-        alert('sucessful save:' + utdCmd.getUtdRawTrim())
+        this.utdstatus = 'successful save:' + utdCmd.getUtdRawTrim();
+        //alert('sucessful save:' + utdCmd.getUtdRawTrim())
 
       } catch (e) {
         alert('errahbk:' + e);
@@ -63,6 +66,9 @@ export class UtdsFormComponent implements OnInit {
 
 
   testhbk() {
+    //alert ('in testhbk')
+    this.hbkemail = new Date().toUTCString();
+    console.log ('hbkemail:' + this.hbkemail);
   }
 
 }

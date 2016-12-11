@@ -1,13 +1,16 @@
-<md-toolbar color="primary">
-  <a routerLink="/" class="md-title">Socially</a>
-  <span class="fill-remaining-space"></span>
-  <div [hidden]="user">
-    <a md-button [routerLink]="['/login']" >hbkLogin0</a>
-    <a md-button [routerLink]="['/signup']">bkSign up0</a>
-  </div>
-  <div [hidden]="!user">
-    xx<span>{{ user | displayName }}</span>yy
-    <button md-button (click)="logout()">Logout</button>
-  </div>
-</md-toolbar>
-xxx<router-outlet>inside another router-outlet hbk</router-outlet>yyy
+    <md-toolbar color="primary">
+        <a routerLink="/" class="md-title">Socially</a>
+        <span class="fill-remaining-space"></span>
+
+        <div [hidden]="userhbk">
+            <a md-button [routerLink]="['/login']" >hbkLogin0</a>
+            <a md-button [routerLink]="['/signup']">bkSign up0</a>
+        </div>
+        <div [hidden]="!userhbk">
+            xx2<span>{{ userhbk | displayName }}</span>yy2
+            <button md-button (click)="logout()">Logout</button>
+        </div>
+    </md-toolbar>
+
+
+<router-outlet></router-outlet>

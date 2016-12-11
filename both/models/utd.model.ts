@@ -2,7 +2,7 @@ import { CollectionObject } from './collection-object.model';
 
 export interface Utd extends CollectionObject {
   namex: string;
-  public: boolean;
+  publicInd: boolean;
 }
 
 interface RSVP {
