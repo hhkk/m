@@ -1,9 +1,9 @@
 import {OnDestroy, OnInit} from "@angular/core";
 import {Observable, Subscription, Subject} from "rxjs";
-import {Party} from "../../../../both/models/party.model";
+import {Utd} from "../../../../both/models/utd.model";
 import {PaginationService} from "ng2-pagination";
 import {MeteorObservable} from "meteor-rxjs";
-import {Parties} from "../../../../both/collections/parties.collection";
+import {Utds} from "../../../../both/collections/utds.collection";
 import {Counts} from "meteor/tmeasday:publish-counts";
 import {InjectUser} from "angular2-meteor-accounts-ui";
 
@@ -18,13 +18,13 @@ interface Options extends Pagination {
 
 @InjectUser('user')
 export class UtdsList implements OnInit, OnDestroy {
-  parties: Observable<Party[]>;
-  partiesSub: Subscription;
+  utds: Observable<Utd[]>;
+  utdsSub: Subscription;
   pageSize: Subject<number> = new Subject<number>();
   curPage: Subject<number> = new Subject<number>();
   nameOrder: Subject<number> = new Subject<number>();
   optionsSub: Subscription;
-  partiesSize: number = 0;
+  utdsSize: number = 0;
   autorunSub: Subscription;
   location: Subject<string> = new Subject<string>();
   user: Meteor.User;
@@ -51,12 +51,14 @@ export class UtdsList implements OnInit, OnDestroy {
 
       this.paginationService.setCurrentPage(this.paginationService.defaultId, curPage as number);
 
-      if (this.partiesSub) {
-        this.partiesSub.unsubscribe();
+      if (this.utdsSub) {
+        this.utdsSub.unsubscribe();
       }
 
-      this.partiesSub = MeteorObservable.subscribe('parties', options, location).subscribe(() => {
-        this.parties = Parties.find({}, {
+      alert('in utds-list.class.ts');
+
+      this.utdsSub = MeteorObservable.subscribe('utds', options, location).subscribe(() => {
+        this.utds = Utds.find({}, {
           sort: {
             name: nameOrder
           }
@@ -68,7 +70,7 @@ export class UtdsList implements OnInit, OnDestroy {
       id: this.paginationService.defaultId,
       itemsPerPage: 10,
       currentPage: 1,
-      totalItems: this.partiesSize
+      totalItems: this.utdsSize
     });
 
     this.pageSize.next(10);
@@ -77,13 +79,13 @@ export class UtdsList implements OnInit, OnDestroy {
     this.location.next('');
 
     this.autorunSub = MeteorObservable.autorun().subscribe(() => {
-      this.partiesSize = Counts.get('numberOfParties');
-      this.paginationService.setTotalItems(this.paginationService.defaultId, this.partiesSize);
+      this.utdsSize = Counts.get('numberOfParties');
+      this.paginationService.setTotalItems(this.paginationService.defaultId, this.utdsSize);
     });
   }
 
-  removeParty(party: Party): void {
-    Parties.remove(party._id);
+  removeUtd (utd: Utd): void {
+    Utds.remove(utd._id);
   }
 
   search(value: string): void {
@@ -99,12 +101,12 @@ export class UtdsList implements OnInit, OnDestroy {
     this.nameOrder.next(parseInt(nameOrder));
   }
 
-  isOwner(party: Party): boolean {
-    return this.user && this.user._id === party.owner;
+  isOwner(utd: Utd): boolean {
+    return this.user && this.user._id === utd.owner;
   }
 
   ngOnDestroy() {
-    this.partiesSub.unsubscribe();
+    this.utdsSub.unsubscribe();
     this.optionsSub.unsubscribe();
     this.autorunSub.unsubscribe();
     this.imagesSubs.unsubscribe();

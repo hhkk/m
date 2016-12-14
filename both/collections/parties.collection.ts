@@ -4,7 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import { Party } from '../models/party.model';
 
 export const Parties = new MongoObservable.Collection<Party>('parties');
-
+console.log ('in parties.collection.ts');
 function loggedIn() {
   return !!Meteor.user();
   }

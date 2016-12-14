@@ -1,14 +1,15 @@
 import { CollectionObject } from './collection-object.model';
 
+console.log('in party.model.ts');
 export interface Party extends CollectionObject {
   name: string;
   description: string;
   location: Location;
   owner?: string;
   public: boolean;
-  invited?: string[];
-  rsvps?: RSVP[];
-  images?: string[];
+    invited?: string[];
+    rsvps?: RSVP[];
+    images?: string[];
 }
 
 interface RSVP {

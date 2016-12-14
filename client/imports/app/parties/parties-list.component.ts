@@ -6,7 +6,7 @@ import template from './parties-list.component.html';
 import style from './parties-list.component.scss';
 
 @Component({
-  selector: 'parties-list',
+  selector: 'anchor-parties-listx',
   template,
   styles: [ style ]
 })

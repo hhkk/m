@@ -6,7 +6,7 @@ import { Parties } from '../../../both/collections/parties.collection';
 interface Options {
   [key: string]: any;
 }
-
+console.log('in parties.ts');
 Meteor.publish('parties', function(options: Options, location?: string) {
   const selector = buildQuery.call(this, null, location);
 

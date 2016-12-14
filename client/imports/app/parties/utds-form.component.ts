@@ -51,7 +51,8 @@ export class UtdsFormComponent implements OnInit {
       try {
         Utds.insert({
           namex: utdCmd.getUtdRawTrim(),
-          publicInd: utdCmd.getPublicInd()
+          public: utdCmd.getPublicInd(),
+          location2: 'dummylocation'
         });
         this.utdstatus = 'successful save:' + utdCmd.getUtdRawTrim();
         //alert('sucessful save:' + utdCmd.getUtdRawTrim())
