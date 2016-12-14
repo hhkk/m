@@ -55,7 +55,7 @@ export class UtdsList implements OnInit, OnDestroy {
         this.utdsSub.unsubscribe();
       }
 
-      alert('in utds-list.class.ts');
+      console.log('in utds-list.class.ts init');
 
       this.utdsSub = MeteorObservable.subscribe('utds', options, location).subscribe(() => {
         this.utds = Utds.find({}, {

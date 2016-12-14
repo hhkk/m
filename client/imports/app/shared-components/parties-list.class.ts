@@ -55,7 +55,9 @@ export class PartiesList implements OnInit, OnDestroy {
         this.partiesSub.unsubscribe();
       }
 
+      console.log('in parties-list.class.ts init');
       this.partiesSub = MeteorObservable.subscribe('parties', options, location).subscribe(() => {
+        console.log ('in parties-list.class.ts pre-find &&&&&&&&&&&&&&&&&&&&&&& ');
         this.parties = Parties.find({}, {
           sort: {
             name: nameOrder
