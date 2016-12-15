@@ -30,12 +30,16 @@ export class PartiesList implements OnInit, OnDestroy {
   user: Meteor.User;
   imagesSubs: Subscription;
 
+  hbkpartycount: number;
+
   constructor(private paginationService: PaginationService) {
 
   }
 
   ngOnInit() {
     this.imagesSubs = MeteorObservable.subscribe('images').subscribe();
+
+    this.hbkpartycount = -1;
 
     this.optionsSub = Observable.combineLatest(
       this.pageSize,

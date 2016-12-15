@@ -7,6 +7,7 @@ import {Utds} from "../../../../both/collections/utds.collection";
 import {Counts} from "meteor/tmeasday:publish-counts";
 import {InjectUser} from "angular2-meteor-accounts-ui";
 
+
 interface Pagination {
   limit: number;
   skip: number;
@@ -30,11 +31,14 @@ export class UtdsList implements OnInit, OnDestroy {
   user: Meteor.User;
   imagesSubs: Subscription;
 
+  hbkpartycount: number;
+
   constructor(private paginationService: PaginationService) {
 
   }
 
   ngOnInit() {
+    this.hbkpartycount = -200;
     this.imagesSubs = MeteorObservable.subscribe('images').subscribe();
 
     this.optionsSub = Observable.combineLatest(

@@ -62,11 +62,13 @@ function buildQuery(utdId?: string, location?: string): Object {
 
   const searchRegEx = { '$regex': '.*' + (location || '') + '.*', '$options': 'i' };
 
-  return {
-    $and: [{
-        'location.name': searchRegEx
-      },
+  let x = {
+    $and: [
+      //   {
+      //   'location.name': searchRegEx
+      // },
       isAvailable
     ]
   };
+  return x;
 }
